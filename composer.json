@@ -2,6 +2,11 @@
     "name": "edgebranding/statamic-spam-filter",
     "description": "AI-powered spam filter for Statamic form submissions via Edge Filter API.",
     "type": "statamic-addon",
+    "homepage": "https://github.com/EdisonReklamebyraa/statamic-spam-filter",
+    "support": {
+        "issues": "https://github.com/EdisonReklamebyraa/statamic-spam-filter/issues",
+        "source": "https://github.com/EdisonReklamebyraa/statamic-spam-filter"
+    },
     "require": {
         "php": "^8.2",
         "statamic/cms": "^4.0 || ^5.0"

@@ -1,5 +1,7 @@
 # Statamic Spam Filter
 
+> **Work in progress.** This package is not ready for public use. It is published for internal development purposes only.
+
 A thin Statamic addon that checks form submissions against the [Edge Filter](../edge-filter) API and cancels spam before it is saved.
 
 ## How It Works
@@ -15,6 +17,19 @@ The addon listens for Statamic's `SubmissionCreating` event. For every submissio
 - A running [Edge Filter](../edge-filter) instance
 
 ## Installation
+
+Since this package is not yet on Packagist, add the GitHub repository to your Statamic site's `composer.json` first:
+
+```json
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/EdisonReklamebyraa/statamic-spam-filter"
+    }
+]
+```
+
+Then install:
 
 ```bash
 composer require edgebranding/statamic-spam-filter
