@@ -55,11 +55,19 @@ php artisan vendor:publish --tag=spam-filter-config
 | `EDGE_FILTER_URL` | — | Base URL of the Edge Filter service |
 | `EDGE_FILTER_API_KEY` | — | Shared API key configured on the service |
 | `EDGE_FILTER_TIMEOUT` | `3` | Seconds before the request times out |
+| `SPAM_FILTER_SHADOW_MODE` | `true` | Log verdicts but never block submissions |
+| `SPAM_FILTER_LOG` | `true` | Write all verdicts to the application log |
+
+## Shadow Mode
+
+The package ships with `SPAM_FILTER_SHADOW_MODE=true`. In this mode the AI runs on every submission and logs its findings, but nothing is ever blocked. This lets you verify the filter is accurate before enabling it for real.
+
+Once you're confident, set `SPAM_FILTER_SHADOW_MODE=false` on any site where you want actual blocking.
 
 ## Logging
 
-Blocked submissions are logged at the `info` level:
+When `SPAM_FILTER_LOG=true`, every verdict is written to the application log:
 
 ```
-spam-filter blocked submission  form="Contact Form"  confidence=0.99  reason="..."
+spam-filter verdict  form="Contact Form"  spam=true  confidence=0.99  reason="..."  shadow_mode=true  acted_on=false
 ```

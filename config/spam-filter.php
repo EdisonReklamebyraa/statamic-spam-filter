@@ -38,4 +38,29 @@ return [
 
     'timeout' => env('EDGE_FILTER_TIMEOUT', 3),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Shadow Mode
+    |--------------------------------------------------------------------------
+    |
+    | When enabled, spam is detected and logged but submissions are never
+    | blocked. Use this to verify the filter is working correctly before
+    | enabling it for real. Defaults to true for safety.
+    |
+    */
+
+    'shadow_mode' => env('SPAM_FILTER_SHADOW_MODE', true),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Logging
+    |--------------------------------------------------------------------------
+    |
+    | When enabled, all verdicts are written to the application log so you
+    | can monitor what the filter is detecting.
+    |
+    */
+
+    'log' => env('SPAM_FILTER_LOG', true),
+
 ];

@@ -13,9 +13,10 @@ class CheckSubmissionForSpam
     public function handle(SubmissionCreating $event): bool|null
     {
         $submission = $event->submission;
+        $form = $submission->form()->title();
 
         $verdict = $this->client->analyze(
-            form: $submission->form()->title(),
+            form: $form,
             fields: $submission->data()->all(),
         );
 
@@ -24,13 +25,21 @@ class CheckSubmissionForSpam
             return null;
         }
 
-        if ($verdict['spam']) {
-            Log::info('spam-filter blocked submission', [
-                'form' => $submission->form()->title(),
+        $shadowMode = config('spam-filter.shadow_mode');
+
+        if (config('spam-filter.log')) {
+            Log::info('spam-filter verdict', [
+                'form' => $form,
+                'fields' => $submission->data()->all(),
+                'spam' => $verdict['spam'],
                 'confidence' => $verdict['confidence'],
                 'reason' => $verdict['reason'],
+                'shadow_mode' => $shadowMode,
+                'acted_on' => ! $shadowMode && $verdict['spam'],
             ]);
+        }
 
+        if ($verdict['spam'] && ! $shadowMode) {
             return false;
         }
 
