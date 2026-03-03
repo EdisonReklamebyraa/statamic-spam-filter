@@ -15,9 +15,14 @@ class CheckSubmissionForSpam
         $submission = $event->submission;
         $form = $submission->form()->title();
 
+        $fieldConfig = $submission->form()->blueprint()->fields()->all()
+            ->mapWithKeys(fn ($field) => [$field->handle() => ['required' => $field->isRequired()]])
+            ->all();
+
         $verdict = $this->client->analyze(
             form: $form,
             fields: $submission->data()->all(),
+            fieldConfig: $fieldConfig,
         );
 
         if ($verdict === null) {

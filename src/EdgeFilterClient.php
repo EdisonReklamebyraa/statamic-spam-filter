@@ -14,7 +14,7 @@ class EdgeFilterClient
      *
      * @return array{spam: bool, confidence: float, reason: string}|null
      */
-    public function analyze(string $form, array $fields): ?array
+    public function analyze(string $form, array $fields, array $fieldConfig = []): ?array
     {
         try {
             $response = Http::timeout(config('spam-filter.timeout', 3))
@@ -22,6 +22,7 @@ class EdgeFilterClient
                 ->post(rtrim(config('spam-filter.url'), '/').'/api/analyze', [
                     'form' => $form,
                     'fields' => $fields,
+                    'field_config' => $fieldConfig,
                 ]);
 
             if ($response->failed()) {
