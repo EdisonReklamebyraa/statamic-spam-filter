@@ -68,6 +68,18 @@ Once you're confident, set `EDGE_FILTER_SHADOW_MODE=false` on any site where you
 
 When `EDGE_FILTER_LOG=true`, every verdict is written to the application log:
 
-```
-spam-filter verdict  form="Contact Form"  spam=true  confidence=0.99  reason="..."  shadow_mode=true  acted_on=false
+```json
+{
+  "form": "Contact",
+  "fields": {
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "message": "Hello, I would like more information."
+  },
+  "spam": false,
+  "confidence": 0.95,
+  "reason": "The submission contains a personal name, a valid email address, and a natural language message matching the form's purpose.",
+  "shadow_mode": false,
+  "acted_on": false
+}
 ```
