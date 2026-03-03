@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'url' => env('EDGE_FILTER_URL'),
+    'url' => env('EDGE_GUARD_URL'),
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'api_key' => env('EDGE_FILTER_API_KEY'),
+    'api_key' => env('EDGE_GUARD_API_KEY'),
 
     /*
     |--------------------------------------------------------------------------
@@ -49,7 +49,7 @@ return [
     |
     */
 
-    'shadow_mode' => env('SPAM_FILTER_SHADOW_MODE', true),
+    'shadow_mode' => env('EDGE_FILTER_SHADOW_MODE', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -61,6 +61,6 @@ return [
     |
     */
 
-    'log' => env('SPAM_FILTER_LOG', true),
+    'log' => env('EDGE_FILTER_LOG', true),
 
 ];

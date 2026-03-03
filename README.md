@@ -38,8 +38,8 @@ composer require edgebranding/statamic-spam-filter
 Then add to your `.env`:
 
 ```env
-EDGE_FILTER_URL=https://spam.yourdomain.com
-EDGE_FILTER_API_KEY=your-api-key
+EDGE_GUARD_URL=https://spam.yourdomain.com
+EDGE_GUARD_API_KEY=your-api-key
 ```
 
 Optionally publish the config file if you need to customise the timeout:
@@ -52,21 +52,21 @@ php artisan vendor:publish --tag=spam-filter-config
 
 | Variable | Default | Description |
 |---|---|---|
-| `EDGE_FILTER_URL` | — | Base URL of the Edge Filter service |
-| `EDGE_FILTER_API_KEY` | — | Shared API key configured on the service |
+| `EDGE_GUARD_URL` | — | Base URL of the Edge Guard service |
+| `EDGE_GUARD_API_KEY` | — | Shared API key configured on the service |
 | `EDGE_FILTER_TIMEOUT` | `3` | Seconds before the request times out |
-| `SPAM_FILTER_SHADOW_MODE` | `true` | Log verdicts but never block submissions |
-| `SPAM_FILTER_LOG` | `true` | Write all verdicts to the application log |
+| `EDGE_FILTER_SHADOW_MODE` | `true` | Log verdicts but never block submissions |
+| `EDGE_FILTER_LOG` | `true` | Write all verdicts to the application log |
 
 ## Shadow Mode
 
-The package ships with `SPAM_FILTER_SHADOW_MODE=true`. In this mode the AI runs on every submission and logs its findings, but nothing is ever blocked. This lets you verify the filter is accurate before enabling it for real.
+The package ships with `EDGE_FILTER_SHADOW_MODE=true`. In this mode the AI runs on every submission and logs its findings, but nothing is ever blocked. This lets you verify the filter is accurate before enabling it for real.
 
-Once you're confident, set `SPAM_FILTER_SHADOW_MODE=false` on any site where you want actual blocking.
+Once you're confident, set `EDGE_FILTER_SHADOW_MODE=false` on any site where you want actual blocking.
 
 ## Logging
 
-When `SPAM_FILTER_LOG=true`, every verdict is written to the application log:
+When `EDGE_FILTER_LOG=true`, every verdict is written to the application log:
 
 ```
 spam-filter verdict  form="Contact Form"  spam=true  confidence=0.99  reason="..."  shadow_mode=true  acted_on=false
