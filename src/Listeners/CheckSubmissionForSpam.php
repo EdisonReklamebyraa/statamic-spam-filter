@@ -4,13 +4,13 @@ namespace Edgebranding\StatamicSpamFilter\Listeners;
 
 use Edgebranding\StatamicSpamFilter\EdgeFilterClient;
 use Illuminate\Support\Facades\Log;
-use Statamic\Events\SubmissionCreating;
+use Statamic\Events\FormSubmitted;
 
 class CheckSubmissionForSpam
 {
     public function __construct(public readonly EdgeFilterClient $client) {}
 
-    public function handle(SubmissionCreating $event): bool|null
+    public function handle(FormSubmitted $event): bool|null
     {
         $submission = $event->submission;
         $form = $submission->form()->title();
