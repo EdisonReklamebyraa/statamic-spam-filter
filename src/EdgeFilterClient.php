@@ -21,6 +21,7 @@ class EdgeFilterClient
                 ->withHeader('X-API-Key', config('spam-filter.api_key'))
                 ->post(rtrim(config('spam-filter.url'), '/').'/api/analyze', [
                     'form' => $form,
+                    'domain' => parse_url(config('app.url'), PHP_URL_HOST),
                     'fields' => $fields,
                     'field_config' => $fieldConfig,
                 ]);
