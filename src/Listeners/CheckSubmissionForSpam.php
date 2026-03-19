@@ -26,7 +26,10 @@ class CheckSubmissionForSpam
         );
 
         if ($verdict === null) {
-            // Service unreachable — fail open, allow submission through.
+            if (config('spam-filter.log')) {
+                Log::warning('spam-filter unreachable', ['form' => $form]);
+            }
+
             return null;
         }
 
