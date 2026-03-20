@@ -17,7 +17,8 @@ class EdgeFilterClient
     public function analyze(string $form, array $fields, array $fieldConfig = []): ?array
     {
         try {
-            $response = Http::timeout(config('spam-filter.timeout', 3))
+            $response = Http::timeout(config('spam-filter.timeout', 15))
+                ->retry(config('spam-filter.retries', 2), 500, throw: false)
                 ->withHeader('X-API-Key', config('spam-filter.api_key'))
                 ->post(rtrim(config('spam-filter.url'), '/').'/api/analyze', [
                     'form' => $form,

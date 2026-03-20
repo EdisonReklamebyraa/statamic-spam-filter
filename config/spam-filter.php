@@ -36,7 +36,19 @@ return [
     |
     */
 
-    'timeout' => env('EDGE_FILTER_TIMEOUT', 3),
+    'timeout' => env('EDGE_FILTER_TIMEOUT', 15),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Retry Attempts
+    |--------------------------------------------------------------------------
+    |
+    | Number of times to retry the request on failure before giving up and
+    | allowing the submission through. Set to 0 to disable retries.
+    |
+    */
+
+    'retries' => env('EDGE_FILTER_RETRIES', 2),
 
     /*
     |--------------------------------------------------------------------------
