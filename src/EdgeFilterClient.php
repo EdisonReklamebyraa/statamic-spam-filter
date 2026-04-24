@@ -19,7 +19,7 @@ class EdgeFilterClient
         try {
             $response = Http::timeout(config('spam-filter.timeout', 15))
                 ->retry(config('spam-filter.retries', 2), 500, throw: false)
-                ->withHeader('X-API-Key', config('spam-filter.api_key'))
+                ->withHeaders(['X-API-Key' => config('spam-filter.api_key')])
                 ->post(rtrim(config('spam-filter.url'), '/').'/api/analyze', [
                     'form' => $form,
                     'domain' => parse_url(config('app.url'), PHP_URL_HOST),
